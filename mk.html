@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OJT Project</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="aws.css">
+    <style>
+        /* Custom styles for the modal */
+        .modal-content {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            animation: fadeInUp 0.5s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            border-bottom: none;
+            padding-bottom: 0;
+            text-align: center;
+        }
+
+        .modal-body {
+            padding: 20px;
+            text-align: center;
+            background-image: url('popup_bg.jpg'); /* Add background image URL */
+            background-size: cover;
+            border-radius: 10px;
+        }
+
+        .modal-footer {
+            border-top: none;
+            padding-top: 0;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        /* Additional styles for improved appearance */
+        .popup-icon {
+            display: block;
+            margin: 0 auto 20px;
+            width: 80px;
+            height: 80px;
+            background-image: url('img.jpg'); /* Add your notification icon image */
+            background-size: cover;
+            animation: pulse 1s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.1);
+            }
+        }
+
+        .popup-title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 15px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .popup-message {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 25px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Custom styles for the navbar */
+        .navbar {
+            background-color: burlywood; /* Navbar background color */
+        }
+
+        .navbar-brand img {
+            height: 65px;
+            width: 150px;
+        }
+
+        .nav-link {
+            color: #ffffff; /* Navbar link color */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .nav-link:hover {
+            color: #ffffff; /* Navbar link hover color */
+        }
+
+        .navbar-toggler {
+            border-color: #ffffff; /* Navbar toggler color */
+        }
+
+        .navbar-toggler-icon {
+            background-color: #ffffff; /* Navbar toggler icon color */
+        }
+
+        /* Custom styles for the carousel */
+        .carousel-item img {
+            height: 500px;
+            object-fit: cover;
+        }
+
+        /* Custom styles for the footer */
+        footer {
+            background-color: #343a40; /* Footer background color */
+            color: #ffffff; /* Footer text color */
+            padding: 30px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            width: 100%;
+            margin-top: 2%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .footer-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin: 5px 0;
+        }
+
+        .footer-section ul li a {
+            color: #ffffff; /* Footer link color */
+            text-decoration: none;
+        }
+
+        .footer-section ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .google-map iframe {
+            width: 100%;
+            height: 250px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <a class="navbar-brand" href="#">
+        <img src="msu.png" alt="Logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Home</a>
+                <ul class="submenu">
+                    <li><a href="#">Submenu</a></li>
+                    <li><a href="#">Submenu</a></li>
+                    <li><a href="#">Submenu</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+                <ul class="submenu">
+                    <li><a href="#">Submenu</a></li>
+                    <li><a href="#">Submenu</a></li>
+                    <li><a href="#">Submenu</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">My Project</a>
+                <ul class="submenu">
+                    <li><a href="#">Submenu</a></li>
+                    <li><a href="#">Submenu</a></li>
+                    <li><a href="#">Submenu</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+                <ul class="submenu">
+                    <li><a href="#">Submenu</a></li>
+                    <li><a href="#">Submenu</a></li>
+                    <li><a href="#">Submenu</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="reglog.html">Login/Signup</a>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-light" id="toggleModeBtn">Dark Mode</button> 
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img class="d-block w-100" src="img.jpg" alt="First slide">
+            <div class="carousel-caption">
+                <h3 class="carousel-text">Text for Slide 1</h3>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" src="img1.jpg" alt="Second slide">
+            <div class="carousel-caption">
+                <h3 class="carousel-text">Text for Slide 2</h3>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" src="img3.jpg" alt="Third slide">
+            <div class="carousel-caption">
+                <h3 class="carousel-text">Text for Slide 3</h3>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" src="img4.jpg" alt="Fourth slide">
+            <div class="carousel-caption">
+                <h3 class="carousel-text">Text for Slide 4</h3>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<footer>
+    <div class="footer-section">
+        <h4>About</h4>
+        <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Our Team</a></li>
+            <li><a href="#">Careers</a></li>
+        </ul>
+    </div>
+    <div class="footer-section">
+        <h4>My Project</h4>
+        <ul>
+            <li><a href="#">Project 1</a></li>
+            <li><a href="#">Project 2</a></li>
+            <li><a href="#">Project 3</a></li>
+        </ul>
+    </div>
+    <div class="footer-section">
+        <h4>Blogs</h4>
+        <ul>
+            <li><a href="#">Latest Posts</a></li>
+            <li><a href="#">Popular Posts</a></li>
+            <li><a href="#">Archived Posts</a></li>
+        </ul>
+    </div>
+    <div class="footer-section">
+        <h4>Social</h4>
+        <ul>
+            <li><a href="https://www.facebook.com/">Facebook</a></li>
+            <li><a href="https://www.Twitter.com/">Twitter</a></li>
+            <li><a href="https://www.Instagram.com/">Instagram</a></li>
+        </ul>
+    </div>
+    <div class="google-map">
+        <!-- Add Google Map iframe -->
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23666.015415039918!2d88.43741805517415!3d27.333078826641085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e6980b809a2785%3A0x92ed41629e2b2fc2!2sTokdey%2C%20Sikkim%20737139!5e1!3m2!1sen!2sin!4v1716534153553!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>    </div>
+</footer>
+
+<!-- Popup Notification Modal -->
+<div class="modal fade" id="redirectModal" tabindex="-1" role="dialog" aria-labelledby="redirectModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="redirectModalLabel">Important Message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="popup-icon"></div>
+                <h2 class="popup-title">Welcome!</h2>
+                <p class="popup-message">You will be redirected to the Login/Signup page in a moment.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="window.location.href='reglog.html';">Proceed to Login/Signup</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    let darkMode = false;
+    const body = document.querySelector('body');
+    const toggleModeBtn = document.getElementById('toggleModeBtn');
+
+    function toggleMode() {
+        darkMode = !darkMode;
+        if (darkMode) {
+            body.style.backgroundColor = '#000';
+            toggleModeBtn.textContent = 'Light Mode';
+        } else {
+            body.style.backgroundColor = '#fff';
+            toggleModeBtn.textContent = 'Dark Mode';
+        }
+    }
+
+    toggleModeBtn.addEventListener('click', toggleMode);
+
+    // Function to automatically slide the carousel every 3 seconds
+    setInterval(function() {
+        $('.carousel').carousel('next');
+    }, 3000);
+
+    // Function to show popup notification modal after 10 seconds
+    $(document).ready(function() {
+        setTimeout(function() {
+            $('#redirectModal').modal('show');
+        }, 10000);
+    });
+</script>
+
+</body>
+</html>

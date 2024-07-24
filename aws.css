@@ -1,0 +1,291 @@
+.nav{
+    background-color: #000;
+}
+.navbar-nav {
+    width: 100%;
+    justify-content: right;
+    
+    font-family: fantasy;
+    
+}
+
+
+.center-nav-item {
+    margin: 0 auto;
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+/* Additional styling for dropdown menus */
+.nav-item .submenu {
+    display: none;
+    position: absolute;
+    background-color: transparent;
+   
+    z-index: 1000;
+    border-right: 30px;
+}
+
+.nav-item:hover .submenu {
+    display: inline-block;
+}
+
+.submenu li {
+    list-style: none;
+}
+
+.submenu li a {
+    
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+}
+
+.submenu li a:hover {
+    background-color: transparent;
+}
+
+/* Adjust positioning for the submenu */
+.nav-item {
+    position: relative;
+}
+.navbar-nav > .nav-item:last-child {
+    margin-right: 60px; /* Remove margin from the last item */
+}
+
+/* Custom styles to ensure proper spacing and appearance */
+body {
+    padding-top: 70px; /* Adjust this based on the height of your navbar */
+}
+
+.carousel {
+    margin: 20px auto;
+    max-width: 2000px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(93, 85, 114, 0.1);
+}
+
+.carousel-item img {
+    height: 500px; /* Adjust the height as needed */
+    object-fit: cover;
+    filter: brightness(0.85);
+}
+
+.carousel-caption {
+   
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    position: absolute;
+}
+
+.carousel-caption h5 {
+    color: transparent;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.carousel-caption p {
+    color: transparent;
+    font-size: 16px;
+}
+
+.carousel-indicators button {
+    width: 12px;
+    height: 12px;
+    background-color: #777777;
+}
+
+.carousel-indicators .active {
+    background-color: #ffffff;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    background-image: none;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 50px;
+    background: none;
+    outline: none;
+    border: none;
+}
+
+.carousel-control-prev-icon::after,
+.carousel-control-next-icon::after {
+    background-image: none;
+    background-color: transparent;
+}
+/* Carousel container styling */
+.carousel-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    background-color: transparent;
+    height: 500px;
+}
+
+.carousel {
+    position: relative;
+    width: 48%;
+    overflow: hidden;
+
+   
+    
+    
+}
+
+.carousel img, .carousel .text-slide {
+    width: 100%;
+    height: none;
+    display: none;
+}
+
+.carousel img.active, .carousel .text-slide.active {
+    display: block;
+}
+
+.carousel .text-slide {
+    padding: 20px;
+    box-sizing: border-box;
+    color:transparent;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .menu-bar {
+        flex-direction: column;
+    }
+
+    .menu-options {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu-option {
+        margin: 10px 0;
+    }
+
+    .menu-bar .auth-links {
+        margin-top: 10px;
+    }
+
+    .carousel-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .carousel {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+footer {
+    background-color:transparent;
+    color: white transparent;
+    padding: 30px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 2%;
+
+}
+.footer-section {
+    margin-bottom: 15px;
+    flex: 1 1 200px; /* Flex-grow, flex-shrink, and flex-basis */
+    min-width: 150px; /* Ensures a minimum width for responsiveness */
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-left: 10px;
+    margin-top: 40px;
+}
+.footer-section h4 {
+    margin-bottom: 5px;
+}
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+.footer-section ul li {
+    margin: 5px 0;
+}
+.footer-section ul li a {
+    color: transparent;
+    text-decoration: none;
+}
+.footer-section ul li a:hover {
+    text-decoration: underline;
+}
+
+.google-map {
+    flex: 1 1 300px; /* Adjust the flex basis as needed */
+    max-width: 15%; /* Set a maximum width for the map */
+    margin-right: 21%; /* Add some space between the sections */
+
+
+}
+
+.google-map iframe {
+    width: 250%;
+    height: 250px; /* Adjust height as needed */
+    border: none;
+
+
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #fff; /* Change the color as needed */
+    margin: 20px 0; /* Adjust the margin as needed */
+}
+
+/* Custom styles for the red modal */
+.modal-content {
+    background-color: #ff0000; /* Red background color */
+    color: white; /* White text color */
+}
+
+.modal-header {
+    border-bottom: 1px solid #ff6347; /* Tomato red border color */
+}
+
+.modal-header .close {
+    color: white;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #e60000; /* Slightly darker red for active tab */
+    border-color: #e60000;
+}
+
+.nav-tabs .nav-link {
+    color: white;
+    
+}
+
+.form-control {
+    background-color: #ffcccc; /* Light red input background */
+    border: 1px solid #ff6666; /* Darker red border */
+    color: black; /* Dark text color for inputs */
+}
+
+.form-control::placeholder {
+    color: #ff6666;
+}
+.btn-primary {
+    background-color: #e60000; /* Primary button in red */
+    border-color: #e60000;
+}
+
+.btn-primary:hover {
+    background-color: #cc0000; /* Darker red on hover */
+    border-color: #cc0000;
+}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <title>Sign In / Sign Up</title>
+    
+    
+    <style>
+        /* Style for the container holding both forms */
+        .form-container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Style for the form headings */
+        h2, h3 {
+            text-align: center;
+            color: #333;
+        }
+
+        /* Style for the form fields and buttons */
+        input[type="email"], input[type="password"], input[type="submit"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box; /* Ensure padding and border don't add to element's width */
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Hide sign-up form by default */
+        #signup-form {
+            display: none;
+        }
+
+        /* Disable copying and pasting in email input */
+        input[type="email"], input[type="password"] {
+            -webkit-user-select: none; /* Safari */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* IE10+/Edge */
+            user-select: none; /* Standard */
+        }
+
+        /* Style for error messages */
+        .error-message {
+            color: red;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+    </style>
+    <script>
+        function toggleForm() {
+            var signUpForm = document.getElementById("signup-form");
+            var signInForm = document.getElementById("signin-form");
+
+            if (signUpForm.style.display === "none") {
+                signUpForm.style.display = "block";
+                signInForm.style.display = "none";
+            } else {
+                signUpForm.style.display = "none";
+                signInForm.style.display = "block";
+            }
+        }
+
+        function validateForm() {
+            var response = grecaptcha.getResponse();
+            if (response.length == 0) {
+                // CAPTCHA not solved, disable login button
+                document.getElementById("loginButton").disabled = true;
+            } else {
+                // CAPTCHA solved, enable login button
+                document.getElementById("loginButton").disabled = false;
+            }
+        }
+
+        // Function to check if the entered email is unique
+        function checkEmailUnique(input) {
+            var emailInput = input.value.toLowerCase();
+            var emailElements = document.querySelectorAll('input[type="email"]');
+            var isUnique = true;
+            emailElements.forEach(function(emailElement) {
+                if (emailElement.value.toLowerCase() === emailInput && emailElement !== input) {
+                    isUnique = false;
+                }
+            });
+            if (!isUnique) {
+                document.getElementById("emailError").innerHTML = "Email already exists. Please use a different email address.";
+                input.value = "";
+            } else {
+                document.getElementById("emailError").innerHTML = "";
+            }
+        }
+
+        // Function to disable pasting into email and password fields
+        function disablePaste(event) {
+            event.preventDefault();
+        }
+
+        // Function to enforce minimum password length
+        function checkPasswordLength(input) {
+            if (input.value.length < 8) {
+                document.getElementById("passwordError").innerHTML = "Password must be at least 8 characters long.";
+            } else {
+                document.getElementById("passwordError").innerHTML = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Sign In / Sign Up</h2>
+        
+        <div id="signin-form">
+            <h3>Sign In</h3>
+            <form method="POST" action="connect.php">
+                Email: <input type="email" name="email" required oninput="checkEmailUnique(this)" onpaste="disablePaste(event)"><br>
+                Password: <input type="password" name="password" required oninput="checkPasswordLength(this)" onpaste="disablePaste(event)"><br>
+                <div class="g-recaptcha" data-sitekey="6Ldjc_ApAAAAAJqWvlJ_-XcD0B3c2g7Pl6TWwAhZ" data-callback="validateForm"></div>
+                <input type="submit" id="loginButton" name="signin" value="Sign In" disabled>
+            </form>
+            <p>Don't have an account? <a href="#" onclick="toggleForm();">Sign Up</a></p>
+        </div>
+        
+        <div id="signup-form">
+            <h3>Sign Up</h3>
+            <form method="POST" action="connect.php">
+                Email: <input type="email" name="email" required oninput="checkEmailUnique(this)" onpaste="disablePaste(event)"><span id="emailError" class="error-message"></span><br>
+                Password: <input type="password" name="password" required oninput="checkPasswordLength(this)" onpaste="disablePaste(event)"><span id="passwordError" class="error-message"></span><br>
+                <input type="submit" name="signup" value="Sign Up">
+            </form>
+            <p>Already have an account? <a href="#" onclick="toggleForm();">Sign In</a></p>
+        </div>
+    </div>
+</body>
+</html>

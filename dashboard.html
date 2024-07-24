@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        #userDetails {
+            margin-bottom: 30px;
+        }
+
+        #userDetails img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-top: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .logout-btn {
+            background-color: #ff5252;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 1em;
+            outline: none;
+        }
+
+        .logout-btn:hover {
+            background-color: #ff1744;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Your Dashboard</h1>
+        <div id="userDetails">
+            <h2>Profile Information</h2>
+            <p><img id="userProfilePicture" src="http://localhost/mk/upload.html" alt="Profile Picture"></p>
+            <p><strong>ID:</strong> <span id="userId">123456</span></p>
+            <p><strong>Email:</strong> <span id="userEmail">user@example.com</span></p>
+        </div>
+        <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Fetch user details including the profile picture from the server
+            $.ajax({
+                url: 'profile.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    // Display user details including the profile picture
+                    $('#userId').text(response.user_id);
+                    $('#userEmail').text(response.user_email);
+                    if(response.user_profile_picture) {
+                        $('#userProfilePicture').attr('src', 'upload/' + response.user_profile_picture);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+
+            // Set session timeout variables
+            var sessionTimeout;
+            var inactiveTime = 10000; // 10 seconds
+
+            // Function to reset session timeout
+            function resetSessionTimeout() {
+                clearTimeout(sessionTimeout);
+                sessionTimeout = setTimeout(function() {
+                    // Redirect to logout page upon session timeout
+                    window.location.href = 'mk.html';
+                }, inactiveTime);
+            }
+
+            // Call resetSessionTimeout() on user activity
+            $(document).on('mousemove keypress', function() {
+                resetSessionTimeout();
+            });
+
+            // Logout button click event
+            $('.logout-btn').click(function() {
+                // Redirect to logout page upon logout button click
+                window.location.href = 'mk.html';
+            });
+
+            // Initialize session timeout on page load
+            resetSessionTimeout();
+        });
+    </script>
+</body>
+</html>
